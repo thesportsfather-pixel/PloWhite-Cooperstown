@@ -1,1 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <title>
+    PLO Bulldogs White | Road to Cooperstown
+  </title>
+
+  <meta
+    name="description"
+    content="Support PLO Bulldogs White on the Road to Cooperstown."
+  />
+
+  <style>
+    :root {
+      --bg: #090909;
+      --panel: #151515;
+      --panel2: #1e1e1e;
+      --red: #d71920;
+      --red-light: #ff3a43;
+      --white: #ffffff;
+      --silver: #d8d8d8;
+      --muted: #9c9c9c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      color: var(--white);
+
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(215, 25, 32, 0.18),
+          transparent 34%
+        ),
+        linear-gradient(
+          180deg,
+          #111111 0%,
+          #070707 100%
+        );
+    }
+
+    .page-shell {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+      padding: 30px 0 70px;
+    }
+
+    .hero {
+      text-align: center;
+    }
+
+    .team-logo {
+      display: block;
+      width: min(390px, 82vw);
+      height: auto;
+
+      margin:
+        0
+        auto
+        24px;
+
+      object-fit: contain;
+
+      filter:
+        drop-shadow(
+          0 0 20px
+          rgba(215, 25, 32, 0.35)
+        );
+    }
+
+    .team-kicker {
+      margin-bottom: 13px;
+
+      color: var(--red-light);
+
+      font-size: 13px;
+      font-weight: 900;
+
+      letter-spacing: 0.22em;
+
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      margin: 0;
+
+      font-size:
+        clamp(
+          48px,
+          9vw,
+          100px
+        );
+
+      line-height: 0.86;
+
+      font-weight: 1000;
+      font-style: italic;
+
+      letter-spacing: -0.045em;
+
+      text-transform: uppercase;
+
+      text-shadow:
+        4px 4px 0 #7b0f13,
+        7px 7px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-title .road {
+      display: block;
+      color: white;
+    }
+
+    .hero-title .coop {
+      display: block;
+      margin-top: 10px;
+      color: var(--red-light);
+    }
+
+    .hero-subtitle {
+      max-width: 700px;
+
+      margin:
+        26px
+        auto
+        0;
+
+      color: var(--silver);
+
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .choose-section {
+      margin-top: 50px;
+    }
+
+    .choose-title {
+      margin-bottom: 8px;
+
+      text-align: center;
+
+      font-size:
+        clamp(
+          28px,
+          5vw,
+          42px
+        );
+
+      font-weight: 1000;
+
+      text-transform: uppercase;
+    }
+
+    .choose-subtitle {
+      margin:
+        0
+        auto
+        28px;
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 15px;
+    }
+
+    .player-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          3,
+          minmax(0, 1fr)
+        );
+
+      gap: 16px;
+    }
+
+    .player-card {
+      position: relative;
+
+      display: flex;
+
+      align-items: center;
+
+      min-height: 108px;
+
+      padding: 18px;
+
+      overflow: hidden;
+
+      text-decoration: none;
+
+      border:
+        2px
+        solid
+        rgba(215, 25, 32, 0.5);
+
+      border-radius: 17px;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(30, 30, 30, 0.98),
+          rgba(10, 10, 10, 0.98)
+        );
+
+      box-shadow:
+        0 10px 28px
+        rgba(0, 0, 0, 0.3);
+
+      transition:
+        transform 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+
+    .player-card:hover {
+      transform: translateY(-3px);
+
+      border-color: white;
+
+      box-shadow:
+        0 12px 32px
+        rgba(215, 25, 32, 0.18);
+    }
+
+    .number {
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      flex-shrink: 0;
+
+      width: 64px;
+      height: 64px;
+
+      margin-right: 16px;
+
+      border:
+        3px
+        solid
+        var(--red);
+
+      border-radius: 50%;
+
+      color: #111;
+
+      background:
+        radial-gradient(
+          circle at 32% 28%,
+          #ffffff 0%,
+          #f7f5ef 48%,
+          #d2cec4 100%
+        );
+
+      font-size: 22px;
+      font-weight: 1000;
+
+      box-shadow:
+        inset
+        -5px
+        -6px
+        8px
+        rgba(0, 0, 0, 0.15),
+        0
+        0
+        18px
+        rgba(215, 25, 32, 0.25);
+    }
+
+    .player-info {
+      min-width: 0;
+    }
+
+    .player-name {
+      display: block;
+
+      font-size: 17px;
+      font-weight: 1000;
+
+      line-height: 1.15;
+
+      text-transform: uppercase;
+    }
+
+    .support-text {
+      display: block;
+
+      margin-top: 7px;
+
+      color: var(--red-light);
+
+      font-size: 12px;
+      font-weight: 900;
+
+      letter-spacing: 0.07em;
+
+      text-transform: uppercase;
+    }
+
+    .arrow {
+      margin-left: auto;
+      padding-left: 10px;
+
+      color: var(--red-light);
+
+      font-size: 26px;
+      font-weight: 900;
+    }
+
+    .footer {
+      margin-top: 50px;
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .footer strong {
+      color: white;
+    }
+
+    @media (max-width: 820px) {
+      .player-grid {
+        grid-template-columns:
+          repeat(
+            2,
+            minmax(0, 1fr)
+          );
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page-shell {
+        width: 94%;
+        padding-top: 20px;
+      }
+
+      .team-logo {
+        width: min(330px, 82vw);
+      }
+
+      .player-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .player-card {
+        min-height: 92px;
+      }
+
+      .number {
+        width: 57px;
+        height: 57px;
+
+        font-size: 20px;
+      }
+
+      .player-name {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page-shell">
+
+    <section class="hero">
+
+      <img
+        src="/plo-white-logo.png"
+        alt="PLO Bulldogs White"
+        class="team-logo"
+      />
+
+      <div class="team-kicker">
+        PLO Bulldogs White Baseball
+      </div>
+
+      <h1 class="hero-title">
+
+        <span class="road">
+          Road to
+        </span>
+
+        <span class="coop">
+          Cooperstown
+        </span>
+
+      </h1>
+
+      <p class="hero-subtitle">
+        Help PLO Bulldogs White make the Cooperstown dream
+        a reality. Choose the player you would like to
+        support and sponsor one or more baseballs.
+      </p>
+
+    </section>
+
+
+    <section class="choose-section">
+
+      <h2 class="choose-title">
+        Choose Your Player
+      </h2>
+
+      <p class="choose-subtitle">
+        Select a player below to visit their individual fundraiser.
+      </p>
+
+
+      <div class="player-grid">
+
+
+        <a
+          class="player-card"
+          href="/fundraiser.html?player=dylan-adler"
+        >
+          <span class="number">#0</span>
+
+          <span class="player-info">
+            <span class="player-name">
+              Dylan Adler
+            </span>
+
+            <span class="support-text">
+              Support Dylan
+            </span>
+          </span>
+
+          <span class="arrow">›</span>
+        </a>
+
+
+        <a
+          class="player-card"
+          href="/fundraiser.html?player=lucas-chowattukunnel"
+        >
+          <span class="number">#1</span>
+
+          <span class="player-info">
+            <span class="player-name">
+              Lucas Chowattukunnel
+            </span>
+
+            <span class="support-text">
+              Support Lucas
+            </span>
+          </span>
+
+          <span class="arrow">›</span>
+        </a>
+
+
+        <a
+          class="player-card"
+          href="/fundraiser.html?player=hunter-myers"
+        >
+          <span class="number">#2</span>
+
+          <span class="player-info">
+            <span class="player-name">
+              Hunter Myers
+            </span>
+
+            <span class="support-text">
+              Support Hunter
+            </span>
+          </span>
+
+          <span class="arrow">›</span>
+        </a>
+
+
+        <a
+          class="player-card"
+          href="/fundraiser.html?player=felix-german"
+        >
+          <span class="number">#3</span>
+
+          <span class="player-info">
+            <span class="player-name">
+              Felix German
+            </span>
+
+            <span class="support-text">
+              Support Felix
+            </span>
+          </span>
+
+          <span class="arrow">›</span>
+        </a>
+
+
+        <a
+          class="player-card"
+          href="/fundraiser.html?player=josh-m-djokic"
+        >
+          <span class="number">#7</span>
+
+          <span class="player-info">
+            <span class="player-name">
+              Josh M Djokic
+            </span>
+
+            <span class="support-text">
+              Support Josh
+            </span>
+          </span>
+
+          <span class="arrow">›</span>
+        </a>
+
+
+        <a
+          class="player-card"
+          href="/fundraiser.html?player=benjamin-corea"
+        >
+          <span class="number">#10</span>
+
+          <span class="player-info">
+            <span class="player-name">
+              Benjamin Corea
+            </span>
+
+            <span class="support-text">
+              Support Benjamin
+            </span>
+          </span>
+
+          <span class="arrow">›</span>
+        </a>
+
+
+        <a
+          class="player-card"
+          href="/fundraiser.html?player=angelo-lofrisco"
+        >
+          <span class="number">#13</span>
+
+          <span class="player-info">
+            <span class="player-name">
+              Angelo Lofrisco
+            </span>
+
+            <span class="support-text">
+              Support Angelo
+            </span>
+          </span>
+
+          <span class="arrow">›</span>
+        </a>
+
+
+        <a
+          class="player-card"
+          href="/fundraiser.html?player=dom-donoso"
+        >
+          <span class="number">#14</span>
+
+          <span class="player-info">
+            <span class="player-name">
+              Dom Donoso
+            </span>
+
+            <span class="support-text">
+              Support Dom
+            </span>
+          </span>
+
+          <span class="arrow">›</span>
+        </a>
+
+
+        <a
+          class="player-card"
+          href="/fundraiser.html?player=isaac-rojas"
+        >
+          <span class="number">#19</span>
+
+          <span class="player-info">
+            <span class="player-name">
+              Isaac Rojas
+            </span>
+
+            <span class="support-text">
+              Support Isaac
+            </span>
+          </span>
+
+          <span class="arrow">›</span>
+        </a>
+
+
+        <a
+          class="player-card"
+          href="/fundraiser.html?player=jayden-mendez"
+        >
+          <span class="number">#21</span>
+
+          <span class="player-info">
+            <span class="player-name">
+              Jayden Mendez
+            </span>
+
+            <span class="support-text">
+              Support Jayden
+            </span>
+          </span>
+
+          <span class="arrow">›</span>
+        </a>
+
+
+        <a
+          class="player-card"
+          href="/fundraiser.html?player=alan-diaz"
+        >
+          <span class="number">#23</span>
+
+          <span class="player-info">
+            <span class="player-name">
+              Alan Diaz
+            </span>
+
+            <span class="support-text">
+              Support Alan
+            </span>
+          </span>
+
+          <span class="arrow">›</span>
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+    <footer class="footer">
+
+      <strong>
+        PLO BULLDOGS WHITE
+      </strong>
+
+      <br />
+
+      Road to Cooperstown
+
+    </footer>
+
+  </main>
+
+</body>
+</html>
