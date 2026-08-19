@@ -677,7 +677,89 @@
 
     </section>
 
+<section class="general-donation">
 
+  <div class="general-kicker">
+    Support the Entire Team
+  </div>
+
+  <h2 class="general-title">
+    General Team Donation
+  </h2>
+
+  <p class="general-description">
+    Want to support PLO Bulldogs White without selecting
+    a player or purchasing a baseball? Enter any custom
+    donation amount below.
+  </p>
+
+  <div class="general-form">
+
+    <div class="general-field">
+      <label for="generalDonationAmount">
+        Donation Amount
+      </label>
+
+      <div class="amount-wrap">
+        <span class="amount-symbol">$</span>
+
+        <input
+          id="generalDonationAmount"
+          type="number"
+          min="1"
+          step="0.01"
+          inputmode="decimal"
+          placeholder="100.00"
+        />
+      </div>
+    </div>
+
+    <div class="general-field">
+      <label for="generalDonorName">
+        Donor Name
+      </label>
+
+      <input
+        id="generalDonorName"
+        type="text"
+        maxlength="50"
+        autocomplete="name"
+        placeholder="Example: The Smith Family"
+      />
+    </div>
+
+    <label class="anonymous-option">
+      <input
+        id="generalAnonymous"
+        type="checkbox"
+      />
+
+      <span>
+        Remain Anonymous
+      </span>
+    </label>
+
+    <button
+      id="generalDonateButton"
+      class="general-button"
+      type="button"
+    >
+      Donate to PLO White
+    </button>
+
+    <div
+      id="generalStatus"
+      class="general-status"
+    ></div>
+
+    <p class="general-note">
+      General donations support the team directly
+      and do not purchase or reserve a baseball.
+    </p>
+
+  </div>
+
+</section>
     <footer class="footer">
 
       <strong>
