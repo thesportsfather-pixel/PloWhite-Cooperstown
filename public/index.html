@@ -691,6 +691,254 @@
     </footer>
 
   </main>
+<script>
+  const generalDonationAmount =
+    document.getElementById(
+      "generalDonationAmount"
+    );
 
+  const generalDonorName =
+    document.getElementById(
+      "generalDonorName"
+    );
+
+  const generalAnonymous =
+    document.getElementById(
+      "generalAnonymous"
+    );
+
+  const generalDonateButton =
+    document.getElementById(
+      "generalDonateButton"
+    );
+
+  const generalStatus =
+    document.getElementById(
+      "generalStatus"
+    );
+
+
+  function showGeneralStatus(
+    message,
+    type
+  ) {
+    generalStatus.textContent =
+      message;
+
+    generalStatus.className =
+      "general-status " + type;
+  }
+
+
+  generalAnonymous.addEventListener(
+    "change",
+    () => {
+      if (
+        generalAnonymous.checked
+      ) {
+        generalDonorName.value =
+          "";
+
+        generalDonorName.disabled =
+          true;
+
+        generalDonorName.placeholder =
+          "Anonymous donation";
+      } else {
+        generalDonorName.disabled =
+          false;
+
+        generalDonorName.placeholder =
+          "Example: The Smith Family";
+      }
+    }
+  );
+
+
+  generalDonateButton.addEventListener(
+    "click",
+    async () => {
+      const amount =
+        Number(
+          generalDonationAmount.value
+        );
+
+      let donorName;
+
+      if (
+        generalAnonymous.checked
+      ) {
+        donorName =
+          "Anonymous";
+      } else {
+        donorName =
+          generalDonorName
+            .value
+            .trim()
+            .replace(
+              /\s+/g,
+              " "
+            );
+
+        if (!donorName) {
+          showGeneralStatus(
+            "Please enter a donor name or select Remain Anonymous.",
+            "error"
+          );
+
+          generalDonorName.focus();
+
+          return;
+        }
+      }
+
+
+      if (
+        !Number.isFinite(amount) ||
+        amount < 1
+      ) {
+        showGeneralStatus(
+          "Please enter a donation amount of at least $1.",
+          "error"
+        );
+
+        generalDonationAmount.focus();
+
+        return;
+      }
+
+
+      generalDonateButton.disabled =
+        true;
+
+      generalDonateButton.textContent =
+        "Creating Checkout...";
+
+      showGeneralStatus(
+        "Preparing secure checkout...",
+        "success"
+      );
+
+
+      try {
+        const response =
+          await fetch(
+            "/api/create-general-donation",
+            {
+              method:
+                "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body:
+                JSON.stringify({
+                  amount,
+                  donorName
+                })
+            }
+          );
+
+
+        const contentType =
+          response.headers.get(
+            "content-type"
+          ) || "";
+
+
+        if (
+          !contentType.includes(
+            "application/json"
+          )
+        ) {
+          throw new Error(
+            "General donation checkout is not connected yet."
+          );
+        }
+
+
+        const data =
+          await response.json();
+
+
+        if (!response.ok) {
+          throw new Error(
+            data.error ||
+            "Unable to create donation checkout."
+          );
+        }
+
+
+        if (!data.url) {
+          throw new Error(
+            "Checkout URL was not returned."
+          );
+        }
+
+
+        window.location.href =
+          data.url;
+
+      } catch (error) {
+        console.error(
+          error
+        );
+
+        showGeneralStatus(
+          error.message ||
+          "General donation checkout is unavailable.",
+          "error"
+        );
+
+        generalDonateButton.disabled =
+          false;
+
+        generalDonateButton.textContent =
+          "Donate to PLO White";
+      }
+    }
+  );
+
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+
+  if (
+    params.get(
+      "general_donation"
+    ) === "success"
+  ) {
+    showGeneralStatus(
+      "Thank you for supporting PLO Bulldogs White!",
+      "success"
+    );
+
+    document
+      .querySelector(
+        ".general-donation"
+      )
+      ?.scrollIntoView({
+        behavior:
+          "smooth"
+      });
+  }
+
+
+  if (
+    params.get(
+      "general_donation"
+    ) === "canceled"
+  ) {
+    showGeneralStatus(
+      "Donation checkout was canceled. No payment was made.",
+      "error"
+    );
+  }
+</script>
 </body>
 </html>
